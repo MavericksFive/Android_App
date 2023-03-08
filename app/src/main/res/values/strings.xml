@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="filter_name">Filter by name...</string>
 </resources>
