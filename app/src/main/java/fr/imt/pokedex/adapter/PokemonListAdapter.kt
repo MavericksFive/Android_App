@@ -1,5 +1,6 @@
 package fr.imt.pokedex.adapter
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.imt.pokedex.PokedexListActivity.Companion.getAssetsDrawable
+import fr.imt.pokedex.PokemonCardActivity
 import fr.imt.pokedex.R
 import fr.imt.pokedex.model.Pokemon
-
 class PokemonListAdapter(private val context: Context, private val dataset:
 List<Pokemon>): RecyclerView.Adapter<PokemonListAdapter.ItemViewHolder>() {
     class ItemViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -43,6 +44,10 @@ List<Pokemon>): RecyclerView.Adapter<PokemonListAdapter.ItemViewHolder>() {
             holder.type2View.visibility = View.VISIBLE
         } else {
             holder.type2View.visibility = View.GONE
+        }
+        holder.imageView.setOnClickListener { _ ->
+            val intent = Intent(context, PokemonCardActivity::class.java)
+            intent.putExtra("pokemon", item)
+            context.startActivity(intent)
         } }
 }
-
