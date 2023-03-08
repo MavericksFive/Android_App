@@ -11,7 +11,6 @@ import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import fr.imt.pokedex.adapter.PokemonListAdapter
 import fr.imt.pokedex.data.DBHelper
-import fr.imt.pokedex.data.Datasource
 import fr.imt.pokedex.model.Pokemon
 import java.io.IOException
 const val TAG: String = "PokedexListActivity"

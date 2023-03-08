@@ -47,7 +47,7 @@ List<Pokemon>): RecyclerView.Adapter<PokemonListAdapter.ItemViewHolder>() {
         }
         holder.imageView.setOnClickListener { _ ->
             val intent = Intent(context, PokemonCardActivity::class.java)
-            intent.putExtra("pokemon", item)
+            intent.putExtra("id", item.id)
             context.startActivity(intent)
         } }
 }

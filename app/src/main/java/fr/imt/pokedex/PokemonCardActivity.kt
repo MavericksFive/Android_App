@@ -6,20 +6,19 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import fr.imt.pokedex.PokedexListActivity.Companion.getAssetsDrawable
 import fr.imt.pokedex.model.Pokemon
+import fr.imt.pokedex.data.DBHelper
+
 class PokemonCardActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pokemon_card_view)
-        val bundle: Bundle? = intent.extras
-        bundle?.let {
-            bundle.apply {
-                val pokemon: Pokemon? = getParcelable("pokemon")
-                if (pokemon != null) {
-                    loadPokemon(pokemon)
-                } else {
-                    finish() }
-            } }
+        val id = intent.getIntExtra("id",0)
+        val pokemon: Pokemon? = DBHelper(this).getPokemonById(id)
+        if (pokemon != null) {
+            loadPokemon(pokemon)
+        } else {
+            finish() }
     }
     private fun loadPokemon(myPokemon: Pokemon) {
         with(myPokemon) {
@@ -41,10 +40,10 @@ class PokemonCardActivity: AppCompatActivity() {
             //Type2
             val myType2Image: ImageView = findViewById(R.id.pokedex_card_type2View)
             if (type2 != null) {
-            bitmap =
-                getAssetsDrawable(context = this@PokemonCardActivity,"${type2}.png")
+            bitmap = getAssetsDrawable(context = this@PokemonCardActivity,"${type2}.png")
                     myType2Image.setImageDrawable(bitmap)}
             findViewById<TextView>(R.id.pokemon_card_description).text = description
         }
     }
 }
+
